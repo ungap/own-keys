@@ -1,7 +1,7 @@
 {
   "name": "@ungap/own-keys",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A basic Reflect.ownKeys polyfill",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
