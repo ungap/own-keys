@@ -1,0 +1,33 @@
+{
+  "name": "@ungap/own-keys",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "A basic Reflect.ownKeys polyfill",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "unpkg": "min.js",
+  "exports": {
+    "import": "./esm/index.js",
+    "default": "./cjs/index.js"
+  },
+  "scripts": {
+    "build": "npm run cjs && npm run esm && npm run min && npm run test && npm run size",
+    "cjs": "cp index.js ./cjs/ && echo 'module.exports = ownKeys;' >> ./cjs/index.js",
+    "esm": "cp index.js ./esm/ && echo 'export default ownKeys;' >> ./esm/index.js",
+    "min": "uglifyjs index.js --support-ie8 --comments=/^!/ -c -m -o min.js",
+    "size": "cat index.js | wc -c && cat min.js | wc -c && gzip -c9 min.js | wc -c && cat min.js | brotli | wc -c",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "test": "nyc node test/index.js"
+  },
+  "keywords": [
+    "Reflect",
+    "ownKeys"
+  ],
+  "author": "Andrea Giammarchi",
+  "license": "ISC",
+  "devDependencies": {
+    "coveralls": "^3.0.11",
+    "nyc": "^15.0.1",
+    "uglify-js": "^3.9.1"
+  }
+}
